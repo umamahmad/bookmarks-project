@@ -35,6 +35,60 @@
             letter-spacing: 2px;
         }
 
+        .menu {
+            display: inline-flex;
+            list-style: none;
+            margin-left: 40px;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .menu li {
+            line-height: 1;
+        }
+
+        .menu a {
+            color: #f4f4f4;
+            text-decoration: none;
+            padding: 8px 10px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .menu .selected a,
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .user {
+            display: inline-flex;
+            align-items: center;
+            color: #f4f4f4;
+            margin-left: auto;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .user form {
+            display: inline;
+            margin: 0;
+        }
+
+        .user button {
+            background: transparent;
+            border: 1px solid #667eea;
+            color: #f4f4f4;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .user button:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-1px);
+        }
+
         #content {
             flex: 1;
             padding: 40px 20px;
@@ -48,6 +102,24 @@
 <body>
     <div id="header">
         <span class="logo">Bookmarks</span>
+        {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == "dashboard" %}class="selected"{% endif %}><a href="{% url 'dashboard' %}">My dashboard</a></li>
+                <li {% if section == "images" %}class="selected"{% endif %}><a href="#">Images</a></li>
+                <li {% if section == "people" %}class="selected"{% endif %}><a href="#">People</a></li>
+            </ul>
+            <span class="user">
+                Hello {{ request.user.first_name|default:request.user.username }},
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </span>
+        {% else %}
+            <span class="user">
+                <a href="{% url 'login' %}">Log-in</a>
+            </span>
+        {% endif %}
     </div>
 
     <div id="content">
