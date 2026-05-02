@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+<style>
+    .logout-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 36px 32px;
+        border-radius: 16px;
+        max-width: 460px;
+        width: 100%;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        text-align: center;
+    }
+
+    .logout-card h1 {
+        margin-bottom: 18px;
+        font-size: 34px;
+        color: #2b2b2b;
+    }
+
+    .logout-card p {
+        color: #555;
+        line-height: 1.7;
+        font-size: 16px;
+        margin-bottom: 22px;
+    }
+
+    .logout-card a {
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .logout-card a:hover {
+        color: #4d5bd1;
+        border-color: #667eea;
+    }
+</style>
+
+<div class="logout-card">
+    <h1>Logged out</h1>
+    <p>
+        You have been successfully logged out.
+        You can <a href="{% url 'login' %}">log in again</a>.
+    </p>
+</div>
+{% endblock %}
