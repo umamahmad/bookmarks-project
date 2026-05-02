@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+{% block content %}
+<style>
+    .login-form {
+        background: rgba(255, 255, 255, 0.96);
+        padding: 36px 34px;
+        border-radius: 16px;
+        max-width: 440px;
+        width: 100%;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(12px);
+    }
+
+    .login-form h1 {
+        margin-bottom: 18px;
+        color: #2b2b2b;
+        font-size: 32px;
+        text-align: center;
+        letter-spacing: 0.3px;
+    }
+
+    .login-form p {
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 22px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .login-form .error {
+        color: #a83232;
+        background: #ffe9e9;
+        border: 1px solid #f4c2c2;
+        padding: 12px 14px;
+        border-radius: 8px;
+    }
+
+    .login-form form {
+        display: grid;
+        gap: 16px;
+    }
+
+    .login-form label {
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"],
+    .login-form input[type="email"] {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d5d5d5;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .login-form input[type="text"]:focus,
+    .login-form input[type="password"]:focus,
+    .login-form input[type="email"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+    }
+
+    .login-form input[type="submit"] {
+        width: 100%;
+        padding: 13px 0;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .login-form input[type="submit"]:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 25px rgba(102, 126, 234, 0.28);
+    }
+</style>
+<div class="login-form">
+
+    <h1>Log-in</h1>
+
+    {% if form.errors %}
+        <p class="error">
+            Your username and password didn't match.
+            Please try again.
+        </p>
+    {% else %}
+        <p>Please, use the following form to log-in:</p>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+        
+        <input type="hidden" name="next" value="{{ next|default:'/' }}">
+        
+        <p><input type="submit" value="Log-in"></p>
+    </form>
+
+</div>
+{% endblock %}
