@@ -94,6 +94,25 @@
         margin-top: 10px;
     }
 
+    .login-form .register-link {
+        margin-top: 12px;
+        color: #444;
+        font-size: 14px;
+    }
+
+    .login-form .register-link a {
+        color: #667eea;
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .login-form .register-link a:hover {
+        color: #4d5bd1;
+        border-color: #667eea;
+    }
+
     .login-form .forgot-password a {
         color: #667eea;
         text-decoration: none;
@@ -114,7 +133,10 @@
             Please try again.
         </p>
     {% else %}
-        <p>Please, use the following form to log-in:</p>
+        <p class="register-link">
+            Please, use the following form to log-in.<br>
+            If you don't have an account <a href="{% url 'register' %}">register here</a>.
+        </p>
     {% endif %}
 
     <form action="{% url 'login' %}" method="post">

@@ -12,9 +12,10 @@ class UserRegistrationForm(forms.ModelForm):
         widget = forms.PasswordInput
     )
     password2 = forms.CharField(
-        label = 'Repeat Passwrod',
+        label = 'Repeat Password',
         widget = forms.PasswordInput
     )
+    first_name = forms.CharField(label='Name')
 
     class Meta:
         model = get_user_model()

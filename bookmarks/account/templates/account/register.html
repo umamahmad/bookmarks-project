@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+<style>
+    .register-card {
+        background: rgba(255, 255, 255, 0.98);
+        padding: 42px 38px;
+        border-radius: 18px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(14px);
+        text-align: center;
+    }
+
+    .register-card h1 {
+        margin-bottom: 18px;
+        color: #202020;
+        font-size: 34px;
+        letter-spacing: 0.2px;
+    }
+
+    .register-card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 26px;
+        font-size: 15px;
+    }
+
+    .register-card form {
+        display: grid;
+        gap: 18px;
+    }
+
+    .register-card input[type="text"],
+    .register-card input[type="email"],
+    .register-card input[type="password"] {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d8d8d8;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .register-card input[type="text"]:focus,
+    .register-card input[type="email"]:focus,
+    .register-card input[type="password"]:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+    }
+
+    .register-card input[type="submit"] {
+        width: 100%;
+        padding: 14px 0;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        margin-top: 10px;
+    }
+
+    .register-card input[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(102, 126, 234, 0.25);
+    }
+</style>
+
+<div class="register-card">
+    <h1>Create an account</h1>
+    <p>Please, sign up using the following form:</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <p><input type="submit" value="Create my account"></p>
+    </form>
+</div>
+{% endblock %}

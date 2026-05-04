@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<style>
+    .register-done-card {
+        background: rgba(255, 255, 255, 0.96);
+        padding: 40px 36px;
+        border-radius: 16px;
+        max-width: 520px;
+        width: 100%;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(102, 126, 234, 0.18);
+        backdrop-filter: blur(12px);
+        text-align: center;
+    }
+
+    .register-done-card h1 {
+        margin-bottom: 16px;
+        color: #2b2b2b;
+        font-size: 32px;
+        letter-spacing: 0.3px;
+    }
+
+    .register-done-card p {
+        color: #555;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 18px;
+    }
+
+    .register-done-card a {
+        color: #667eea;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .register-done-card a:hover {
+        color: #4d5bd1;
+        border-color: #667eea;
+    }
+</style>
+
+<div class="register-done-card">
+    <h1>Welcome {{ new_user.first_name }}!</h1>
+    <p>Your account has been successfully created.</p>
+    <p>Now you can <a href="{% url 'login' %}">log in</a>.</p>
+</div>
+{% endblock %}
