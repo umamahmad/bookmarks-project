@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Edit your account{% endblock %}
+
+{% block content %}
+  <style>
+    .edit-card {
+      width: min(740px, 100%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 32px;
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #2b2b2b;
+    }
+
+    .edit-card h1 {
+      margin-bottom: 16px;
+      font-size: 2rem;
+      color: #333;
+      letter-spacing: 0.5px;
+    }
+
+    .edit-card p.description {
+      margin-bottom: 24px;
+      line-height: 1.7;
+      color: #4a4a4a;
+    }
+
+    .edit-card form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .edit-card input[type="text"],
+    .edit-card input[type="email"],
+    .edit-card input[type="date"],
+    .edit-card input[type="file"],
+    .edit-card textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #d7d7d7;
+      border-radius: 12px;
+      background: #fafafa;
+      font-size: 1rem;
+      color: #1f1f1f;
+    }
+
+    .edit-card input[type="submit"] {
+      width: fit-content;
+      margin-top: 8px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 999px;
+      background: #667eea;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .edit-card input[type="submit"]:hover {
+      background: #5563c1;
+      transform: translateY(-1px);
+    }
+
+    .edit-card .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  </style>
+
+  <div class="edit-card">
+    <h1>Edit your account</h1>
+    <p class="description">You can edit your account using the following form:</p>
+    <form method="post" enctype="multipart/form-data">
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+      {% csrf_token %}
+      <p><input type="submit" value="Save changes"></p>
+    </form>
+  </div>
+{% endblock %}
